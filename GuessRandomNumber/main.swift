@@ -13,6 +13,7 @@ var userGuess = 1
 var continueGuessing = true
 var keepPlaying = true
 var input = ""
+var numberOfGuesses = 0
 
 while (keepPlaying) {
   randomNumber = Int(arc4random_uniform(101)) // get a random number between 0 - 100
@@ -22,15 +23,16 @@ while (keepPlaying) {
     input = input.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
     userGuess = Int(input)!
     print("User Guess: \(userGuess)")
+    numberOfGuesses++
     if (userGuess == randomNumber) {
       continueGuessing = false
-      print("Congrats!")
+      print("(\(numberOfGuesses)) Congrats!")
     }
     else if (userGuess < randomNumber) {
-      print("You have guessed too low")
+      print("(\(numberOfGuesses)) You have guessed too low")
     }
     else {
-      print("You have guessed too high")
+      print("(\(numberOfGuesses)) You have guessed too high")
     }
   }
   print("Play Again ? Y or N")
@@ -40,5 +42,6 @@ while (keepPlaying) {
     keepPlaying = false
   }
   continueGuessing = true
+  numberOfGuesses = 0
 }
 
